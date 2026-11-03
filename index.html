@@ -36,13 +36,21 @@
         <div class="menu-name" id="menuName">메뉴를 추천받아 보세요!</div>
         <p class="menu-desc" id="menuDesc">아래 버튼을 누르면 맛있는 메뉴가 뿅 나타납니다.</p>
 
-        <!-- 심플한 네이버 지도 내 주변 근처 맛집 바로가기 -->
-        <div class="nearby-search-box" id="nearbySearchBox" style="display: none;">
-          <a id="naverMapLink" href="#" target="_blank" rel="noopener noreferrer" class="naver-search-btn">
-            <span class="naver-badge">N</span>
-            <span id="naverSearchText">내 주변 근처 맛집 찾기</span>
-            <span class="btn-arrow">↗</span>
-          </a>
+        <!-- 맛집 지도 선택 영역 (추천 후 노출) -->
+        <div class="map-choice-box" id="mapChoiceBox" style="display: none;">
+          <p class="map-choice-title">📍 내 주변 맛집 지도 선택</p>
+          <div class="map-buttons-grid">
+            <a id="naverMapLink" href="#" target="_blank" rel="noopener noreferrer" class="map-btn naver">
+              <span class="map-logo-badge naver">N</span>
+              <span class="map-btn-name">네이버 지도로 보기</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            <a id="kakaoMapLink" href="#" target="_blank" rel="noopener noreferrer" class="map-btn kakao">
+              <span class="map-logo-badge kakao">K</span>
+              <span class="map-btn-name">카카오맵으로 보기</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+          </div>
         </div>
       </div>
 

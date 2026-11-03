@@ -52,9 +52,9 @@ const menuTag = document.getElementById("menuTag");
 const menuName = document.getElementById("menuName");
 const menuDesc = document.getElementById("menuDesc");
 const tabBtns = document.querySelectorAll(".tab-btn");
-const nearbySearchBox = document.getElementById("nearbySearchBox");
+const mapChoiceBox = document.getElementById("mapChoiceBox");
 const naverMapLink = document.getElementById("naverMapLink");
-const naverSearchText = document.getElementById("naverSearchText");
+const kakaoMapLink = document.getElementById("kakaoMapLink");
 
 let currentCategory = "all";
 let isSpinning = false;
@@ -124,7 +124,7 @@ function recommendMenu() {
 
   displayBox.classList.remove("highlight");
   menuTag.style.display = "inline-block";
-  nearbySearchBox.style.display = "none"; // 회전 중에는 맛집 버튼 숨김
+  mapChoiceBox.style.display = "none"; // 회전 중에는 지도 선택 박스 숨김
 
   // 이번에 최종으로 보여줄 메뉴 결정 (중복 방지 알고리즘 적용)
   const finalChosenMenu = getNextRandomMenu(currentCategory);
@@ -154,11 +154,11 @@ function finishSelection(chosen) {
   menuTag.textContent = chosen.category;
   menuDesc.textContent = chosen.desc;
 
-  // 심플한 내 주변 근처 네이버 지도 링크 세팅
+  // 네이버 지도 및 카카오맵 내 주변 검색 링크 세팅
   const query = encodeURIComponent(`내 주변 ${chosen.name} 맛집`);
   naverMapLink.href = `https://map.naver.com/p/search/${query}`;
-  naverSearchText.textContent = `내 주변 근처 ${chosen.name} 맛집 찾기`;
-  nearbySearchBox.style.display = "block";
+  kakaoMapLink.href = `https://map.kakao.com/link/search/${query}`;
+  mapChoiceBox.style.display = "block";
 
   displayBox.classList.add("highlight");
   recommendBtn.disabled = false;
