@@ -1,0 +1,432 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff5eb 0%, #ffe8d6 50%, #fed7aa 100%);
+  color: #2d3748;
+  padding: 30px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  /* 전체 너비 대폭 확장 */
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 36px;
+  padding: 56px 48px;
+  box-shadow: 0 24px 50px rgba(234, 88, 12, 0.15), 0 6px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #ff7a18, #af002d 100%);
+}
+
+.header {
+  margin-bottom: 32px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 8px 18px;
+  background-color: #ffedd5;
+  color: #ea580c;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 24px;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.title {
+  font-size: 2.85rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #64748b;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+/* 카테고리 탭 */
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 34px;
+}
+
+.tab-btn {
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  padding: 10px 20px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.tab-btn.active {
+  background: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 6px 14px rgba(234, 88, 12, 0.28);
+}
+
+/* 메뉴 표시 영역 */
+.display-box {
+  background: #fdfaf7;
+  border: 2.5px dashed #fed7aa;
+  border-radius: 28px;
+  padding: 44px 28px;
+  margin-bottom: 36px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.display-box.highlight {
+  border-color: #ea580c;
+  background: #fffbf7;
+  transform: scale(1.02);
+  box-shadow: 0 14px 30px rgba(234, 88, 12, 0.15);
+}
+
+.menu-icon {
+  font-size: 5.5rem;
+  margin-bottom: 16px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.display-box.highlight .menu-icon {
+  animation: bounce 0.6s cubic-bezier(0.36, 0, 0.66, -0.56) alternate;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0.8) rotate(-10deg);
+  }
+
+  50% {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.category-badge {
+  background: #ffedd5;
+  color: #c2410c;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.menu-name {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  word-break: keep-all;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-desc {
+  font-size: 1.15rem;
+  color: #64748b;
+  word-break: keep-all;
+  line-height: 1.5;
+}
+
+/* 전주 맛집 추천 영역 */
+.restaurant-container {
+  width: 100%;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1.5px dashed #fed7aa;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.restaurant-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.naver-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background-color: #03c75a;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 900;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+.restaurant-title-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.3px;
+}
+
+/* 위치 서비스 상태 표시 */
+.geo-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+.geo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #03c75a;
+  box-shadow: 0 0 0 2px rgba(3, 199, 90, 0.2);
+  animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+.restaurant-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.restaurant-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 16px;
+  text-align: left;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(3, 199, 90, 0.12);
+  border-color: #03c75a;
+}
+
+.rest-rank {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #03c75a;
+  border: 1px solid #bbf7d0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.rest-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+  word-break: keep-all;
+}
+
+.rest-info {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  word-break: keep-all;
+}
+
+.rest-map-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 11px 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+  color: #ffffff;
+  background: #03c75a;
+  box-shadow: 0 4px 10px rgba(3, 199, 90, 0.25);
+}
+
+.rest-map-btn:hover {
+  background: #02b350;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(3, 199, 90, 0.35);
+}
+
+/* 메뉴 추천 버튼 */
+.button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.primary-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 20px 36px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 12px 24px rgba(234, 88, 12, 0.32);
+  transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(234, 88, 12, 0.4);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 8px 18px rgba(234, 88, 12, 0.25);
+}
+
+.primary-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-icon {
+  font-size: 1.6rem;
+  transition: transform 0.5s ease;
+}
+
+.primary-btn:hover .btn-icon {
+  transform: rotate(180deg);
+}
+
+  /* 모바일 화면 대응 */
+  @media (max-width: 600px) {
+    .card {
+      padding: 36px 22px;
+      border-radius: 26px;
+    }
+
+    .title {
+      font-size: 2.1rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+
+    .tab-btn {
+      padding: 8px 14px;
+      font-size: 0.92rem;
+    }
+
+    .display-box {
+      min-height: 240px;
+      padding: 30px 18px;
+    }
+
+    .restaurant-list {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .menu-icon {
+      font-size: 4.2rem;
+    }
+
+    .menu-name {
+      font-size: 1.75rem;
+    }
+
+    .menu-desc {
+      font-size: 1rem;
+    }
+
+    .primary-btn {
+      font-size: 1.18rem;
+      padding: 16px 24px;
+    }
+  }

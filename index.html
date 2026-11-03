@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘 뭐 먹지? | 랜덤 메뉴 추천</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 프리텐다드 폰트 적용 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- Canvas Confetti 라이브러리 -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <span class="badge">오늘의 식사 고민 해결소</span>
+        <h1 class="title">오늘 뭐 먹지?</h1>
+        <p class="subtitle">결정하기 힘든 오늘, 맛있는 메뉴를 랜덤으로 골라드려요!</p>
+      </div>
+
+      <!-- 카테고리 필터 태그 -->
+      <div class="category-tabs">
+        <button class="tab-btn active" data-category="all">전체</button>
+        <button class="tab-btn" data-category="한식">한식</button>
+        <button class="tab-btn" data-category="중식">중식</button>
+        <button class="tab-btn" data-category="일식">일식</button>
+        <button class="tab-btn" data-category="양식">양식</button>
+        <button class="tab-btn" data-category="분식/패스트푸드">분식/기타</button>
+      </div>
+
+      <!-- 메뉴 결과 디스플레이 영역 -->
+      <div class="display-box" id="displayBox">
+        <div class="menu-icon" id="menuIcon">🍽️</div>
+        <div class="category-badge" id="menuTag" style="display: none;">카테고리</div>
+        <div class="menu-name" id="menuName">메뉴를 추천받아 보세요!</div>
+        <p class="menu-desc" id="menuDesc">아래 버튼을 누르면 맛있는 메뉴가 뿅 나타납니다.</p>
+
+        <!-- 주변 맛집 추천 영역 (초기에는 숨김) -->
+        <div class="restaurant-container" id="restaurantContainer" style="display: none;">
+          <div class="restaurant-header">
+            <span class="naver-badge">N</span>
+            <span class="restaurant-title-text" id="restaurantTitleText">네이버 지도 내 주변 맛집</span>
+          </div>
+          <div class="geo-status" id="geoStatus">
+            <span class="geo-dot"></span>
+            <span id="geoText">내 위치 확인 중...</span>
+          </div>
+          <div class="restaurant-list" id="restaurantList">
+            <!-- JS에서 동적으로 채워짐 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 추천 버튼 -->
+      <div class="button-group">
+        <button id="recommendBtn" class="primary-btn">
+          <span class="btn-text">메뉴 추천하기</span>
+          <span class="btn-icon">🎲</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
