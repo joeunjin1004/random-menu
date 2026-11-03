@@ -73,6 +73,79 @@ body {
   word-break: keep-all;
 }
 
+/* 거주 지역 설정 카드 */
+.region-setting-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fdf6ee;
+  border: 1.5px solid #fed7aa;
+  border-radius: 18px;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  gap: 12px;
+}
+
+.region-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.region-icon {
+  font-size: 1.25rem;
+}
+
+.region-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #9a3412;
+}
+
+.region-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 320px;
+}
+
+.region-input {
+  width: 100%;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  border: 1.5px solid #fdba74;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1e293b;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.region-input:focus {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+
+.region-save-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  background: #ea580c;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.region-save-btn:hover {
+  background: #c2410c;
+}
+
 /* 카테고리 탭 */
 .category-tabs {
   display: flex;
@@ -227,33 +300,24 @@ body {
   letter-spacing: -0.3px;
 }
 
-/* 위치 서비스 상태 표시 */
-.geo-status {
+/* 거주 지역 상태 뱃지 */
+.region-status-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: #f1f5f9;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.78rem;
-  color: #64748b;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  padding: 5px 14px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  color: #7c2d12;
   margin-bottom: 18px;
 }
 
-.geo-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #03c75a;
-  box-shadow: 0 0 0 2px rgba(3, 199, 90, 0.2);
-  animation: pulseDot 1.8s infinite;
-}
-
-@keyframes pulseDot {
-  0% { transform: scale(0.95); opacity: 0.7; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(0.95); opacity: 0.7; }
+.region-status-badge strong {
+  color: #ea580c;
+  font-weight: 800;
 }
 
 .restaurant-list {
@@ -388,6 +452,16 @@ body {
     .card {
       padding: 36px 22px;
       border-radius: 26px;
+    }
+
+    .region-setting-card {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .region-input-wrap {
+      max-width: 100%;
     }
 
     .title {

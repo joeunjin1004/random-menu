@@ -55,44 +55,51 @@ const tabBtns = document.querySelectorAll(".tab-btn");
 const restaurantContainer = document.getElementById("restaurantContainer");
 const restaurantTitleText = document.getElementById("restaurantTitleText");
 const restaurantList = document.getElementById("restaurantList");
-const geoText = document.getElementById("geoText");
+const userRegionInput = document.getElementById("userRegionInput");
+const saveRegionBtn = document.getElementById("saveRegionBtn");
+const currentRegionText = document.getElementById("currentRegionText");
 
 let currentCategory = "all";
 let isSpinning = false;
 let lastPickedMenuName = null; // 직전에 추천된 메뉴 이름 기록
-let userCoords = null; // 사용자의 실시간 위도/경도 좌표
 
-// 브라우저 위치 서비스(HTML5 Geolocation) 확인 및 좌표 획득
-function initUserLocation() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        userCoords = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        if (geoText) geoText.textContent = "내 위치 기반 탐색 준비 완료";
-      },
-      (error) => {
-        // 사용자가 위치 권한을 거부했거나 실패해도 네이버 지도 자체 내 주변 기능으로 자동 폴백
-        console.log("위치 권한 미허용 또는 오류:", error.message);
-        if (geoText) geoText.textContent = "네이버 지도 자동 내 주변 탐색 적용";
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 60000
-      }
-    );
-  } else {
-    if (geoText) geoText.textContent = "네이버 지도 자동 내 주변 탐색 적용";
+// 거주 지역 관리 (로컬스토리지 연동)
+let userRegion = localStorage.getItem("userRegion") || "전주시";
+
+function initRegion() {
+  if (userRegionInput) userRegionInput.value = userRegion;
+  if (currentRegionText) currentRegionText.textContent = userRegion;
+}
+
+function updateRegion() {
+  const inputVal = userRegionInput.value.trim();
+  if (inputVal) {
+    userRegion = inputVal;
+    localStorage.setItem("userRegion", userRegion);
+    if (currentRegionText) currentRegionText.textContent = userRegion;
+
+    // 현재 추천된 메뉴가 이미 화면에 떠있다면 맛집 목록 즉시 갱신
+    if (lastPickedMenuName && restaurantContainer.style.display !== "none") {
+      renderRegionPlaces(lastPickedMenuName);
+    }
+
+    saveRegionBtn.textContent = "완료!";
+    setTimeout(() => {
+      saveRegionBtn.textContent = "저장";
+    }, 1200);
   }
 }
+
+saveRegionBtn.addEventListener("click", updateRegion);
+userRegionInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    updateRegion();
+  }
+});
 
 // 카테고리별 아직 추천되지 않은 남은 메뉴 풀 관리
 const remainingPools = {};
 
-// 특정 카테고리의 남은 메뉴 풀 초기화
 function initPool(category) {
   const baseList = category === "all"
     ? menuList
@@ -177,41 +184,34 @@ function recommendMenu() {
   }, 50);
 }
 
-// 네이버 지도 URL 생성 함수 (위치서비스 좌표 연동)
-function buildNaverMapUrl(keyword) {
-  const encodedQuery = encodeURIComponent(keyword);
-  // 좌표 정보가 있을 경우 네이버 지도 중심 좌표 파라미터(?c=경도,위도,15,0,0,0,dh) 결합
-  if (userCoords && userCoords.lat && userCoords.lng) {
-    return `https://map.naver.com/p/search/${encodedQuery}?c=${userCoords.lng},${userCoords.lat},15,0,0,0,dh`;
-  }
-  // 좌표가 없더라도 네이버 지도는 접속 기기의 위치를 기준으로 자동 내 주변을 검색
-  return `https://map.naver.com/p/search/${encodedQuery}`;
-}
-
-// 네이버 지도 전용 내 주변 맛집 카드 렌더링
-function renderNaverNearbyPlaces(name) {
-  restaurantTitleText.textContent = `네이버 지도 내 주변 '${name}' 맛집`;
+// 거주 지역 기반 네이버 지도 맛집 카드 렌더링
+function renderRegionPlaces(name) {
+  restaurantTitleText.textContent = `네이버 지도 [${userRegion}] '${name}' 맛집`;
+  if (currentRegionText) currentRegionText.textContent = userRegion;
   restaurantList.innerHTML = "";
 
-  // 1. 내 주변 인기/리뷰 순
-  const popularityUrl = buildNaverMapUrl(`${name} 맛집`);
-  // 2. 내 주변 최단거리 순
-  const distanceUrl = buildNaverMapUrl(`내 주변 ${name}`);
+  // 1. 해당 거주 지역 인기/별점순 검색
+  const popularityQuery = encodeURIComponent(`${userRegion} ${name} 맛집`);
+  const popularityUrl = `https://map.naver.com/p/search/${popularityQuery}`;
+
+  // 2. 해당 거주 지역 주변 매장/거리순 검색
+  const areaQuery = encodeURIComponent(`${userRegion} ${name}`);
+  const areaUrl = `https://map.naver.com/p/search/${areaQuery}`;
 
   const options = [
     {
       badge: "네이버 지도 · 인기순",
-      title: `내 주변 ${name} 맛집`,
+      title: `${userRegion} ${name} 맛집`,
       desc: "방문자 리뷰 및 높은 평점 순으로 주변 인기 식당 탐색",
       url: popularityUrl,
       btnLabel: "리뷰·별점 순 보기"
     },
     {
-      badge: "네이버 지도 · 거리순",
-      title: `가장 가까운 ${name}`,
-      desc: "현재 내 위치에서 최단거리 순으로 가까운 매장 즉시 탐색",
-      url: distanceUrl,
-      btnLabel: "가까운 거리순 보기"
+      badge: "네이버 지도 · 지역 매장",
+      title: `${userRegion} ${name} 전체`,
+      desc: `${userRegion} 내 등록된 ${name} 전문점 및 식당 리스트 탐색`,
+      url: areaUrl,
+      btnLabel: "지역 매장 전체보기"
     }
   ];
 
@@ -242,8 +242,8 @@ function finishSelection(chosen) {
   menuTag.textContent = chosen.category;
   menuDesc.textContent = chosen.desc;
 
-  // 네이버 지도 내 주변 맛집 카드 표시
-  renderNaverNearbyPlaces(chosen.name);
+  // 거주 지역 기반 네이버 지도 맛집 카드 표시
+  renderRegionPlaces(chosen.name);
 
   displayBox.classList.add("highlight");
   recommendBtn.disabled = false;
@@ -262,5 +262,5 @@ function finishSelection(chosen) {
 }
 
 // 초기화
-initUserLocation();
+initRegion();
 recommendBtn.addEventListener("click", recommendMenu);
