@@ -31,7 +31,11 @@
 
       <!-- 메뉴 결과 디스플레이 영역 -->
       <div class="display-box" id="displayBox">
-        <div class="menu-icon" id="menuIcon">🍽️</div>
+        <!-- 음식 사진 및 아이콘 영역 -->
+        <div class="food-media-wrap">
+          <div class="menu-icon" id="menuIcon">🍽️</div>
+          <img id="menuImage" class="menu-image" src="" alt="음식 사진" style="display: none;" />
+        </div>
         <div class="category-badge" id="menuTag" style="display: none;">카테고리</div>
         <div class="menu-name" id="menuName">메뉴를 추천받아 보세요!</div>
         <p class="menu-desc" id="menuDesc">아래 버튼을 누르면 맛있는 메뉴가 뿅 나타납니다.</p>
