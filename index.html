@@ -19,18 +19,6 @@
         <p class="subtitle">결정하기 힘든 오늘, 맛있는 메뉴를 랜덤으로 골라드려요!</p>
       </div>
 
-      <!-- 거주 지역 설정 영역 -->
-      <div class="region-setting-card">
-        <div class="region-label-wrap">
-          <span class="region-icon">🏡</span>
-          <span class="region-label">나의 거주 지역</span>
-        </div>
-        <div class="region-input-wrap">
-          <input type="text" id="userRegionInput" class="region-input" value="전주시" placeholder="지역 입력 (예: 전주시, 효자동)" />
-          <button id="saveRegionBtn" class="region-save-btn">저장</button>
-        </div>
-      </div>
-
       <!-- 카테고리 필터 태그 -->
       <div class="category-tabs">
         <button class="tab-btn active" data-category="all">전체</button>
@@ -48,18 +36,13 @@
         <div class="menu-name" id="menuName">메뉴를 추천받아 보세요!</div>
         <p class="menu-desc" id="menuDesc">아래 버튼을 누르면 맛있는 메뉴가 뿅 나타납니다.</p>
 
-        <!-- 거주 지역 기반 네이버 맛집 추천 영역 (초기에는 숨김) -->
-        <div class="restaurant-container" id="restaurantContainer" style="display: none;">
-          <div class="restaurant-header">
+        <!-- 심플한 네이버 지도 내 주변 근처 맛집 바로가기 -->
+        <div class="nearby-search-box" id="nearbySearchBox" style="display: none;">
+          <a id="naverMapLink" href="#" target="_blank" rel="noopener noreferrer" class="naver-search-btn">
             <span class="naver-badge">N</span>
-            <span class="restaurant-title-text" id="restaurantTitleText">네이버 지도 맛집 찾기</span>
-          </div>
-          <div class="region-status-badge">
-            <span>📍 거주 지역 기준: </span><strong id="currentRegionText">전주시</strong>
-          </div>
-          <div class="restaurant-list" id="restaurantList">
-            <!-- JS에서 동적으로 채워짐 -->
-          </div>
+            <span id="naverSearchText">내 주변 근처 맛집 찾기</span>
+            <span class="btn-arrow">↗</span>
+          </a>
         </div>
       </div>
 

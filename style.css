@@ -17,14 +17,13 @@ body {
 
 .container {
   width: 100%;
-  max-width: 680px;
-  /* 전체 너비 대폭 확장 */
+  max-width: 640px;
 }
 
 .card {
   background: #ffffff;
   border-radius: 36px;
-  padding: 56px 48px;
+  padding: 52px 44px;
   box-shadow: 0 24px 50px rgba(234, 88, 12, 0.15), 0 6px 16px rgba(0, 0, 0, 0.05);
   text-align: center;
   position: relative;
@@ -43,7 +42,7 @@ body {
 }
 
 .header {
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .badge {
@@ -67,83 +66,10 @@ body {
 }
 
 .subtitle {
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   color: #64748b;
   line-height: 1.6;
   word-break: keep-all;
-}
-
-/* 거주 지역 설정 카드 */
-.region-setting-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fdf6ee;
-  border: 1.5px solid #fed7aa;
-  border-radius: 18px;
-  padding: 12px 18px;
-  margin-bottom: 24px;
-  gap: 12px;
-}
-
-.region-label-wrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.region-icon {
-  font-size: 1.25rem;
-}
-
-.region-label {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #9a3412;
-}
-
-.region-input-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  max-width: 320px;
-}
-
-.region-input {
-  width: 100%;
-  padding: 8px 14px;
-  font-size: 0.95rem;
-  border: 1.5px solid #fdba74;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #1e293b;
-  font-weight: 600;
-  outline: none;
-  transition: all 0.2s ease;
-}
-
-.region-input:focus {
-  border-color: #ea580c;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
-}
-
-.region-save-btn {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  background: #ea580c;
-  color: #ffffff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.region-save-btn:hover {
-  background: #c2410c;
 }
 
 /* 카테고리 탭 */
@@ -152,15 +78,15 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
-  margin-bottom: 34px;
+  margin-bottom: 30px;
 }
 
 .tab-btn {
   border: 1.5px solid #e2e8f0;
   background: #f8fafc;
   color: #64748b;
-  padding: 10px 20px;
-  font-size: 1.05rem;
+  padding: 10px 18px;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 24px;
   cursor: pointer;
@@ -184,9 +110,9 @@ body {
   background: #fdfaf7;
   border: 2.5px dashed #fed7aa;
   border-radius: 28px;
-  padding: 44px 28px;
-  margin-bottom: 36px;
-  min-height: 300px;
+  padding: 40px 24px;
+  margin-bottom: 32px;
+  min-height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -203,8 +129,8 @@ body {
 }
 
 .menu-icon {
-  font-size: 5.5rem;
-  margin-bottom: 16px;
+  font-size: 5.2rem;
+  margin-bottom: 14px;
   line-height: 1;
   transition: transform 0.3s ease;
   user-select: none;
@@ -215,34 +141,26 @@ body {
 }
 
 @keyframes bounce {
-  0% {
-    transform: scale(0.8) rotate(-10deg);
-  }
-
-  50% {
-    transform: scale(1.2) rotate(10deg);
-  }
-
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
+  0% { transform: scale(0.8) rotate(-10deg); }
+  50% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 
 .category-badge {
   background: #ffedd5;
   color: #c2410c;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .menu-name {
-  font-size: 2.35rem;
+  font-size: 2.3rem;
   font-weight: 800;
   color: #0f172a;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   word-break: keep-all;
   min-height: 2.8rem;
   display: flex;
@@ -251,32 +169,49 @@ body {
 }
 
 .menu-desc {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #64748b;
   word-break: keep-all;
   line-height: 1.5;
 }
 
-/* 전주 맛집 추천 영역 */
-.restaurant-container {
+/* 심플한 내 주변 네이버 지도 맛집 버튼 영역 */
+.nearby-search-box {
   width: 100%;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1.5px dashed #fed7aa;
+  max-width: 380px;
+  margin-top: 24px;
   animation: fadeIn 0.4s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.restaurant-header {
+.naver-search-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 10px;
+  background-color: #03c75a;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(3, 199, 90, 0.28);
+  transition: all 0.2s ease;
+}
+
+.naver-search-btn:hover {
+  background-color: #02b350;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(3, 199, 90, 0.38);
+}
+
+.naver-search-btn:active {
+  transform: translateY(1px);
 }
 
 .naver-badge {
@@ -285,116 +220,18 @@ body {
   justify-content: center;
   width: 22px;
   height: 22px;
-  background-color: #03c75a;
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 900;
-  border-radius: 5px;
-  font-family: Arial, sans-serif;
-}
-
-.restaurant-title-text {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1e293b;
-  letter-spacing: -0.3px;
-}
-
-/* 거주 지역 상태 뱃지 */
-.region-status-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  background: #fff7ed;
-  border: 1px solid #fed7aa;
-  padding: 5px 14px;
-  border-radius: 14px;
-  font-size: 0.85rem;
-  color: #7c2d12;
-  margin-bottom: 18px;
-}
-
-.region-status-badge strong {
-  color: #ea580c;
-  font-weight: 800;
-}
-
-.restaurant-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.restaurant-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 18px 16px;
-  text-align: left;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.25s ease;
-}
-
-.restaurant-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(3, 199, 90, 0.12);
-  border-color: #03c75a;
-}
-
-.rest-rank {
-  display: inline-block;
-  background: #f0fdf4;
+  background-color: #ffffff;
   color: #03c75a;
-  border: 1px solid #bbf7d0;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 6px;
-  margin-bottom: 8px;
-}
-
-.rest-name {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin-bottom: 6px;
-  word-break: keep-all;
-}
-
-.rest-info {
-  font-size: 0.88rem;
-  color: #64748b;
-  line-height: 1.45;
-  margin-bottom: 14px;
-  word-break: keep-all;
-}
-
-.rest-map-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
   font-size: 0.9rem;
-  font-weight: 700;
-  border-radius: 10px;
-  padding: 11px 14px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-  color: #ffffff;
-  background: #03c75a;
-  box-shadow: 0 4px 10px rgba(3, 199, 90, 0.25);
+  font-weight: 900;
+  border-radius: 4px;
+  font-family: Arial, sans-serif;
+  flex-shrink: 0;
 }
 
-.rest-map-btn:hover {
-  background: #02b350;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(3, 199, 90, 0.35);
+.btn-arrow {
+  font-size: 1.1rem;
+  font-weight: 800;
 }
 
 /* 메뉴 추천 버튼 */
@@ -447,60 +284,41 @@ body {
   transform: rotate(180deg);
 }
 
-  /* 모바일 화면 대응 */
-  @media (max-width: 600px) {
-    .card {
-      padding: 36px 22px;
-      border-radius: 26px;
-    }
-
-    .region-setting-card {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 8px;
-    }
-
-    .region-input-wrap {
-      max-width: 100%;
-    }
-
-    .title {
-      font-size: 2.1rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-
-    .tab-btn {
-      padding: 8px 14px;
-      font-size: 0.92rem;
-    }
-
-    .display-box {
-      min-height: 240px;
-      padding: 30px 18px;
-    }
-
-    .restaurant-list {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-
-    .menu-icon {
-      font-size: 4.2rem;
-    }
-
-    .menu-name {
-      font-size: 1.75rem;
-    }
-
-    .menu-desc {
-      font-size: 1rem;
-    }
-
-    .primary-btn {
-      font-size: 1.18rem;
-      padding: 16px 24px;
-    }
+/* 모바일 화면 대응 */
+@media (max-width: 600px) {
+  .card {
+    padding: 34px 20px;
+    border-radius: 26px;
   }
+  .title {
+    font-size: 2.1rem;
+  }
+  .subtitle {
+    font-size: 1rem;
+  }
+  .tab-btn {
+    padding: 8px 14px;
+    font-size: 0.92rem;
+  }
+  .display-box {
+    min-height: 240px;
+    padding: 28px 16px;
+  }
+  .menu-icon {
+    font-size: 4.2rem;
+  }
+  .menu-name {
+    font-size: 1.75rem;
+  }
+  .menu-desc {
+    font-size: 1rem;
+  }
+  .naver-search-btn {
+    font-size: 0.98rem;
+    padding: 12px 16px;
+  }
+  .primary-btn {
+    font-size: 1.18rem;
+    padding: 16px 24px;
+  }
+}
